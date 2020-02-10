@@ -1,2 +1,2 @@
 # react-tea-time
-React and sweets
+Modern JavaScript (ES6) and React projects
