@@ -13,6 +13,10 @@ function loadEventListeners() {
     form.addEventListener('submit', addTask);
     // Remove task event 
     taskList.addEventListener('click', removeTask);
+    // Clear task event
+    clearBtn.addEventListener('click', clearTasks);
+    // filter tasks event
+    filter.addEventListener('keyup', filterTasks);
 }
 
 // Add Task 
@@ -40,11 +44,43 @@ function addTask(e) {
     // Clear input 
     taskInput.value = '';
 
-    //prevent default submit action
+    // Prevent default submit action
     e.preventDefault();
 }
 
 //Remove Task
 function removeTask(e) {
-    console.log(e.target)
+    if (e.target.parentElement.classList.contains('delete-item')) {
+        if (confirm('Are you sure?')) {
+            // with use of bubbling, can act on parent even if the item clicked as the child (remove entire section that also contains the child)
+            e.target.parentElement.parentElement.remove();
+        }
+    }
+}
+
+// Clear Tasks
+function clearTasks() {
+    //as long as there is something in the list (firstChild)
+    while (taskList.firstChild) {
+        taskList.removeChild(taskList.firstChild);
+    }
+}
+
+// Filter tasks
+function filterTasks(e) {
+    const text = e.target.value.toLowerCase();
+
+    // get all list items and loop through
+    // querySelectorAll returns node list -> can use forEach
+    document.querySelectorAll('.collection-item').forEach(function (task) {
+        const item = task.firstChild.textContent;
+        // if -1, it doesn't match
+        if (item.toLowerCase().indexOf(text) != -1) {
+            task.style.display = 'block';
+        } else {
+            task.style.display = 'none';
+        }
+    });
+
+
 }
