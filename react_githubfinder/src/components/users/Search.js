@@ -9,6 +9,7 @@ export class Search extends Component {
     static propTypes = {
         searchUsers: PropTypes.func.isRequired,
         clearUsers: PropTypes.func.isRequired,
+        // sortByName: PropTypes.func.isRequired,
         showClear: PropTypes.bool.isRequired,
         setAlert: PropTypes.func.isRequired
     }
@@ -45,6 +46,8 @@ export class Search extends Component {
                 </form>
                 {showClear && (
                     <button className="btn btn-light btn-block" onClick={clearUsers}>Clear</button>
+                    // Sort by name with array https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+                    //<button className="btn btn-light btn-block" onClick={}>Sort</button>
                 )}
             </div>
         )
