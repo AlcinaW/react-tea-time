@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+// class Search extends Component() {
+//     state = {
+//         text: ""
+//     }
+
+//     function setText(msg) {
+//         this.setState({ text: msg });
+//     }   
+//}
+
 const Search = ({ searchUsers, showClear, clearUsers, setAlert }) => {
     const [text, setText] = useState('');
 
