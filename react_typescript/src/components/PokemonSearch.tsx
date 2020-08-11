@@ -25,7 +25,7 @@ export class PokemonSearch extends Component<User, SearchState> {
     }
     onSearchClick = (): void => {
         const inputValue = this.pokemonRef.current.value;
-        fetch(`https://pokeapi.co/api/v2/pokemon/${inputValue}`)
+        fetch(`https://pokeapi.co/api/v2/pokemon/${inputValue.toLowerCase()}`)
             .then((res) => {
                 if (res.status !== 200) {
                     this.setState({ error: true });
@@ -67,11 +67,15 @@ export class PokemonSearch extends Component<User, SearchState> {
 
         return (
             <div>
-                <p>Pokemon Search</p>
+                <h1>Pokemon Search</h1>
+                <p>
+                    User {userName}{' '}
+                    {numberOfPokemons && <span>has {numberOfPokemons} Pokemon.</span>}
+                </p>
                 <input type="text" ref={this.pokemonRef} />
                 <button type="button" onClick={this.onSearchClick} className="my-button">
                     Search
-            </button>
+                </button>
                 {resultMarkup}
             </div>
         );
